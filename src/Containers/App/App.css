@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+}
+
+.notSignedIn {
+  background-image: url('../../memphis-colorful.png');
+  /* Background pattern from Toptal Subtle Patterns */
+  background-attachment: fixed;
+}

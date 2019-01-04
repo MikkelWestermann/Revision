@@ -1,0 +1,33 @@
+.jumbotron {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 1000px;
+}
+
+.welcomeText {
+  text-align: left;
+  font-size: 2em;
+  color: #191D32;
+  margin-left: 25px;
+  text-shadow: 4px 5px 12px rgba(25,29,50,0.35);
+}
+
+.welcomeText span {
+  color: #9D37FC;
+  text-shadow: 4px 5px 12px rgba(157, 55, 252,0.35);
+}
+
+#descriptionSectionOne {
+  background-color: #9D37FC;
+}
+
+#descriptionSectionTwo {
+  background-color: #191D32;
+}
+
+.description section {
+  height: 750px;
+  color: #fafaff;
+  padding: 25px;
+}
