@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
-import Signin from '../../Components/Signin/Signin';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { default as Signin } from '../../Components/Signin/Signin';
 import Register from '../../Components/Register/Register';
 import './Homepage.css';
+
+const mapStateToProps = state => {
+  return {
+    isSignedIn: state.account.isSignedIn,
+    isPending: state.account.isPending,
+    username: state.account.username,
+    email: state.account.email
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return{
+
+  };
+}
 
 class Homepage extends Component {
   constructor() {
@@ -47,4 +64,4 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

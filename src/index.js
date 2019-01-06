@@ -1,10 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createLogger } from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './Containers/App/App';
 import * as serviceWorker from './serviceWorker';
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
+import { account, actionFeedback } from './reducers';
+
+const logger = createLogger();
+
+const rootReducer = combineReducers({ account, actionFeedback });
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 const theme = createMuiTheme({
   typography: {
@@ -28,7 +39,9 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </MuiThemeProvider>
   , document.getElementById('root'));
 

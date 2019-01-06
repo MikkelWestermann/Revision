@@ -1,16 +1,16 @@
 import React from 'react';
 import './AccountForm.css';
 
-const AccountForm = props => {
+const AccountForm = ({ name, handleChangeForm, elseText, handleOnSubmit, children }) => {
   return (
-    <form className='accountForm'>
+    <form className='accountForm' onSubmit={handleOnSubmit}>
       <div className='accountFormHeader'>
-        <h3>{props.name}</h3>
+        <h3>{name}</h3>
       </div>
       <div className='accountFormBody'>
-        {props.children}
+        {children}
       </div>
-      <p onClick={props.handleChangeForm}>{props.elseText}</p>
+      <p onClick={handleChangeForm}>{elseText}</p>
     </form>
   );
 }

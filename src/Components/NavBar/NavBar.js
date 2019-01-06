@@ -61,6 +61,9 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  headerTitle: {
+    marginLeft: '25px'
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
@@ -106,15 +109,19 @@ class NavBar extends Component {
           })}
         >
           <Toolbar disableGutters={!open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            {
+              this.props.isSignedIn
+              &&
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, open && classes.hide)}
+              >
+                <MenuIcon />
+              </IconButton>
+            }
+            <Typography variant="h6" color="inherit" noWrap className={!this.props.isSignedIn && classes.headerTitle}>
               Revision
             </Typography>
           </Toolbar>
