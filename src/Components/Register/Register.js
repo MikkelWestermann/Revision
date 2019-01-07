@@ -4,7 +4,7 @@ import AccountForm from '../AccountForm/AccountForm';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-import { register } from '../../actions';
+import { register, openSnackbar } from '../../actions';
 
 const mapStateToProps = state => {
   return {
@@ -17,7 +17,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    handleOnSubmit: (accountName, password) => dispatch(register(accountName, password))
+    handleOnSubmit: (username, email, password) => dispatch(register(username, email, password)),
+    handleOpenSnackBar: (message, variant) => dispatch(openSnackbar(message, variant))
   };
 }
 
@@ -42,6 +43,10 @@ class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    if (this.state.registerUsername === '' || this.state.registerEmail === '' || this.state.registerPassword === '') {
+      this.props.handleOpenSnackBar('You have to fill all input fields', 'warning');
+      return;
+    }
     this.props.handleOnSubmit(this.state.registerUsername, this.state.registerEmail, this.state.registerPassword)
   }
   render() {

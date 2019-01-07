@@ -49,6 +49,7 @@ export const signin = (accountName, password) => (dispatch) => {
 }
 
 export const register = (username, email, password) => (dispatch) => {
+  console.log(username, email, password)
   dispatch({ type: REGISTER_PENDING });
   fetch('http://localhost:3000/register', {
     method: 'post',
@@ -62,10 +63,19 @@ export const register = (username, email, password) => (dispatch) => {
   .then(response => response.json())
   .then(data => {
     if (data.username) {
+      dispatch(openSnackbar('You have successfully created an account!', 'success'));
       dispatch({ type: REGISTER_SUCCESS, payload: data })
     } else {
+      dispatch(openSnackbar(data, 'error'));
       dispatch({ type: REGISTER_FAILED, payload: data })
     }
   })
-  .catch(err => dispatch({ type: REGISTER_FAILED, payload: err }))
+  .catch(err => {
+    dispatch(openSnackbar('Something went wrong', 'error'));
+    dispatch({ type: REGISTER_FAILED, payload: err })
+  })
 }
+
+export const signout = () => ({
+  type: SIGN_OUT
+})

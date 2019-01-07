@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -16,8 +17,28 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Home from '@material-ui/icons/Home';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import ViewCarousel from '@material-ui/icons/ViewCarousel';
+import Search from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
+
+import { signout, openSnackbar } from '../../actions';
+
+const mapStateToProps = state => {
+  return {
+    isSignedIn: state.account.isSignedIn,
+    username: state.account.username,
+    email: state.account.email
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return{
+    handleSignOut: () => dispatch(signout()),
+    handleOpenSnackBar: (message, variant) => dispatch(openSnackbar(message, variant))
+  };
+}
 
 const drawerWidth = 240;
 
@@ -80,6 +101,15 @@ const styles = theme => ({
     }),
     marginLeft: 0,
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  contentBody: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '90vh'
+  }
 });
 
 class NavBar extends Component {
@@ -94,7 +124,11 @@ class NavBar extends Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
-
+  onSignOut = () => {
+    this.props.handleSignOut();
+    this.handleDrawerClose();
+    this.props.handleOpenSnackBar('Successfully Signed Out', 'success');
+  }
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -141,23 +175,35 @@ class NavBar extends Component {
             </IconButton>
           </div>
           <Divider />
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+          <div className={classes.contentBody}>
+            <div>
+              <ListItem button>
+                <ListItemText primary={this.props.username} secondary={this.props.email} />
+                <ListItemIcon><KeyboardArrowRight /></ListItemIcon>
               </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+              <Divider />
+              <List>
+                <ListItem button>
+                  <ListItemIcon><Home /></ListItemIcon>
+                  <ListItemText primary='Home' />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><ViewCarousel /></ListItemIcon>
+                  <ListItemText primary='Your Groups' />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon><Search /></ListItemIcon>
+                  <ListItemText primary='Search' />
+                </ListItem>
+              </List>
+              <Divider />
+            </div>
+            <div>
+              <Button onClick={this.onSignOut} size="large" variant="contained" color="secondary" className={classes.button}>
+                Sign Out
+              </Button>
+            </div>
+          </div>
         </Drawer>
       </div>
     );
@@ -169,4 +215,4 @@ NavBar.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)((withStyles(styles, { withTheme: true })(NavBar)));

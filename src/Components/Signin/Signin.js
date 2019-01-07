@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import AccountForm from '../AccountForm/AccountForm';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';

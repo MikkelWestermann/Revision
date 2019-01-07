@@ -1,7 +1,11 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
-  min-height: 100vh;
+  min-height: 95vh;
   background-image: url('../../memphis-colorful.png');
   /* Background pattern from Toptal Subtle Patterns */
   background-attachment: fixed;
+  overflow-x: hidden; 
 }

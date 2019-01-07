@@ -16,6 +16,7 @@ import green from '@material-ui/core/colors/green';
 import NavBar from '../../Components/NavBar/NavBar';
 import Homepage from '../Homepage/Homepage';
 import Application from '../Application/Application';
+import Footer from '../../Components/Footer/Footer';
 import './App.css';
 
 import { closeSnackbar } from '../../actions';
@@ -80,7 +81,6 @@ const styles1 = theme => ({
 function MySnackbarContent (props) {
   const { classes, className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
-console.log(props)
   return (
     <SnackbarContent
       className={classNames(classes[variant], className)}
@@ -120,35 +120,34 @@ const SnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
 
 class App extends Component {
   render() {
-    const { classes } = this.props;
     return (
       <div className='App'>
-        <NavBar
-          isSignedIn={this.props.isSignedIn}
-          username={this.props.username}
-        />
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.props.open}
-          autoHideDuration={5000}
-          onClose={this.props.handleCloseSnackbar}
-        >
-          <SnackbarContentWrapper
+        <NavBar />
+        <div>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.props.open}
+            autoHideDuration={5000}
             onClose={this.props.handleCloseSnackbar}
-            variant={this.props.varient}
-            message={this.props.message}
-          />
-        </Snackbar>
-        {
-          this.props.isSignedIn
-          ?
-          <Application />
-          :
-          <Homepage />
-        }
+          >
+            <SnackbarContentWrapper
+              onClose={this.props.handleCloseSnackbar}
+              variant={this.props.varient}
+              message={this.props.message}
+            />
+          </Snackbar>
+          {
+            this.props.isSignedIn
+            ?
+            <Application />
+            :
+            <Homepage />
+          }
+        </div>
+        <Footer />
       </div>
     );
   }

@@ -57,5 +57,23 @@ select:-webkit-autofill:focus {
   border-radius: 5px;
   -webkit-text-fill-color: #191D32;
   -webkit-box-shadow: 0 0 0px 1000px #3E9132 inset;
-  transition: background-color 5000s ease-in-out 0s; 
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .accountForm {
+    width: 550px;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .accountForm {
+    width: 100vw;
+    margin: 50px 0;
+    border-radius: 0;
+  }
+  .accountFormHeader {
+    border-radius: 0; 
+  }
 }
