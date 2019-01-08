@@ -23,6 +23,8 @@ import ViewCarousel from '@material-ui/icons/ViewCarousel';
 import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 
+import logo from '../../GraphicalAssets/Revision_logo_medium.png';
+
 import { signout, openSnackbar } from '../../actions';
 
 const mapStateToProps = state => {
@@ -109,6 +111,15 @@ const styles = theme => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '90vh'
+  },
+  navBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingRight: '25px'
+  },
+  navigation: {
+    display: 'flex',
+    alignItems: 'center'
   }
 });
 
@@ -142,22 +153,29 @@ class NavBar extends Component {
             [classes.appBarShift]: open,
           })}
         >
-          <Toolbar disableGutters={!open}>
+          <Toolbar disableGutters={!open} className={classes.navBar}>
+            <div className={classes.navigation}>
+              {
+                this.props.isSignedIn
+                &&
+                <IconButton
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerOpen}
+                  className={classNames(classes.menuButton, open && classes.hide)}
+                >
+                  <MenuIcon />
+                </IconButton>
+              }
+              <Typography variant="h6" color="inherit" noWrap className={!this.props.isSignedIn && classes.headerTitle}>
+                Revision
+              </Typography>
+            </div>
             {
               this.props.isSignedIn
               &&
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
+              <img alt='logo' src={logo} height='50px' width='50px' />
             }
-            <Typography variant="h6" color="inherit" noWrap className={!this.props.isSignedIn && classes.headerTitle}>
-              Revision
-            </Typography>
           </Toolbar>
         </AppBar>
         <Drawer

@@ -15,8 +15,6 @@ const initialAccountState = {
   isPending: false,
   username: '',
   email: '',
-  snackbar: false,
-  message: ''
 }
 
 export const account = (state=initialAccountState, action={}) => {
@@ -24,17 +22,17 @@ export const account = (state=initialAccountState, action={}) => {
     case SIGN_IN_PENDING:
       return Object.assign({}, state, { isPending: true });
     case SIGN_IN_SUCCESS:
-      return Object.assign({}, state, { isPending: false, username: action.payload.username, email: action.payload.email, isSignedIn: true, snackbar: true, message: action.payload.message });
+      return Object.assign({}, state, { isPending: false, username: action.payload.username, email: action.payload.email, isSignedIn: true });
     case SIGN_IN_FAILED:
       return Object.assign({}, state, { isPending: false, message: action.payload, snackbar: true })
     case REGISTER_PENDING:
       return Object.assign({}, state, { isPending: true });
     case REGISTER_SUCCESS:
-      return Object.assign({}, state, { isPending: false, username: action.payload.username, isSignedIn: true, snackbar: true, message: action.payload.message });
+      return Object.assign({}, state, { isPending: false, username: action.payload.username, email: action.payload.email, isSignedIn: true });
     case REGISTER_FAILED:
       return Object.assign({}, state, { isPending: false, message: action.payload, snackbar: true })
     case SIGN_OUT:
-      return Object.assign({}, state, { isSignedIn: false })
+      return Object.assign({}, state, initialAccountState)
     default:
       return state;
   }

@@ -10,6 +10,8 @@ import {
   CLOSE_SNACKBAR
 } from './constants';
 
+const URL = 'http://localhost:3000';
+
 export const openSnackbar = (message, varient) => ({
   type: OPEN_SNACKBAR,
   payload: {
@@ -24,7 +26,7 @@ export const closeSnackbar = () => ({
 
 export const signin = (accountName, password) => (dispatch) => {
   dispatch({ type: SIGN_IN_PENDING });
-  fetch('http://localhost:3000/signin', {
+  fetch(`${URL}/signin`, {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -51,7 +53,7 @@ export const signin = (accountName, password) => (dispatch) => {
 export const register = (username, email, password) => (dispatch) => {
   console.log(username, email, password)
   dispatch({ type: REGISTER_PENDING });
-  fetch('http://localhost:3000/register', {
+  fetch(`${URL}/register`, {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -62,6 +64,7 @@ export const register = (username, email, password) => (dispatch) => {
   })
   .then(response => response.json())
   .then(data => {
+    console.log(data)
     if (data.username) {
       dispatch(openSnackbar('You have successfully created an account!', 'success'));
       dispatch({ type: REGISTER_SUCCESS, payload: data })

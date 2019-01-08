@@ -3,9 +3,9 @@
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  min-height: 95vh;
+  min-height: 100vh;
   background-image: url('../../memphis-colorful.png');
   /* Background pattern from Toptal Subtle Patterns */
   background-attachment: fixed;
-  overflow-x: hidden; 
+  overflow-x: hidden;
 }

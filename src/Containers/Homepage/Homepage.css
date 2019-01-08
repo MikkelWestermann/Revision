@@ -90,7 +90,7 @@
   .jumbotron {
     display: flex;
     flex-direction: column;
-    height: 1500px;
+    height: 1750px;
   }
   .welcomeText {
     text-align: center;
@@ -110,7 +110,7 @@
     flex-direction: column;
   }
   .description div {
-    margin: 0; 
+    margin: 0;
   }
   .description section {
     height: 900px;
