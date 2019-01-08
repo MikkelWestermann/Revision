@@ -1,15 +1,15 @@
 {
-  "main.css": "/RevisionAPI/static/css/main.021430fc.chunk.css",
-  "main.js": "/RevisionAPI/static/js/main.ee1226cd.chunk.js",
-  "main.js.map": "/RevisionAPI/static/js/main.ee1226cd.chunk.js.map",
-  "static/js/1.38e1293b.chunk.js": "/RevisionAPI/static/js/1.38e1293b.chunk.js",
-  "static/js/1.38e1293b.chunk.js.map": "/RevisionAPI/static/js/1.38e1293b.chunk.js.map",
-  "runtime~main.js": "/RevisionAPI/static/js/runtime~main.830ede62.js",
-  "runtime~main.js.map": "/RevisionAPI/static/js/runtime~main.830ede62.js.map",
-  "static/media/Revision_logo_medium.png": "/RevisionAPI/static/media/Revision_logo_medium.02cf7cef.png",
-  "static/media/App.css": "/RevisionAPI/static/media/memphis-colorful.8b33b229.png",
-  "static/css/main.021430fc.chunk.css.map": "/RevisionAPI/static/css/main.021430fc.chunk.css.map",
-  "index.html": "/RevisionAPI/index.html",
-  "precache-manifest.876272281d8998938a96701d45313d3a.js": "/RevisionAPI/precache-manifest.876272281d8998938a96701d45313d3a.js",
-  "service-worker.js": "/RevisionAPI/service-worker.js"
+  "main.css": "/Revision/static/css/main.6147cd6e.chunk.css",
+  "main.js": "/Revision/static/js/main.c538f37d.chunk.js",
+  "main.js.map": "/Revision/static/js/main.c538f37d.chunk.js.map",
+  "static/js/1.38e1293b.chunk.js": "/Revision/static/js/1.38e1293b.chunk.js",
+  "static/js/1.38e1293b.chunk.js.map": "/Revision/static/js/1.38e1293b.chunk.js.map",
+  "runtime~main.js": "/Revision/static/js/runtime~main.c78e08b9.js",
+  "runtime~main.js.map": "/Revision/static/js/runtime~main.c78e08b9.js.map",
+  "static/media/Revision_logo_medium.png": "/Revision/static/media/Revision_logo_medium.02cf7cef.png",
+  "static/media/App.css": "/Revision/static/media/memphis-colorful.8b33b229.png",
+  "static/css/main.6147cd6e.chunk.css.map": "/Revision/static/css/main.6147cd6e.chunk.css.map",
+  "index.html": "/Revision/index.html",
+  "precache-manifest.a5336f9a5bbb7ddbd75c908947c2883e.js": "/Revision/precache-manifest.a5336f9a5bbb7ddbd75c908947c2883e.js",
+  "service-worker.js": "/Revision/service-worker.js"
 }
