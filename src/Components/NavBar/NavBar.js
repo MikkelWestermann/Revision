@@ -22,6 +22,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import ViewCarousel from '@material-ui/icons/ViewCarousel';
 import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import logo from '../../GraphicalAssets/Revision_logo_medium.png';
 
@@ -30,6 +31,7 @@ import { signout, openSnackbar } from '../../actions';
 const mapStateToProps = state => {
   return {
     isSignedIn: state.account.isSignedIn,
+    isPending: state.account.isPending,
     username: state.account.username,
     email: state.account.email
   };
@@ -84,9 +86,6 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-  headerTitle: {
-    marginLeft: '25px'
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
@@ -120,7 +119,10 @@ const styles = theme => ({
   navigation: {
     display: 'flex',
     alignItems: 'center'
-  }
+  },
+  progress: {
+    margin: theme.spacing.unit * 2,
+  },
 });
 
 class NavBar extends Component {
@@ -167,7 +169,7 @@ class NavBar extends Component {
                   <MenuIcon />
                 </IconButton>
               }
-              <Typography variant="h6" color="inherit" noWrap className={!this.props.isSignedIn && classes.headerTitle}>
+              <Typography variant="h6" color="inherit" noWrap style={{marginLeft: `${this.props.isSignedIn ? 0 : '25px'}`}}>
                 Revision
               </Typography>
             </div>
@@ -175,6 +177,11 @@ class NavBar extends Component {
               this.props.isSignedIn
               &&
               <img alt='logo' src={logo} height='50px' width='50px' />
+            }
+            {
+              this.props.isPending
+              &&
+              <CircularProgress className={classes.progress} color="secondary" />
             }
           </Toolbar>
         </AppBar>

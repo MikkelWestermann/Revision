@@ -76,7 +76,7 @@ class Signin extends Component {
           onChange={this.onPasswordChange}
         />
         <Button variant="contained" color="primary" type='submit'>
-          Sign In
+          {this.props.isPending ? 'Loading...' : 'Sign In'}
         </Button>
       </AccountForm>
     );

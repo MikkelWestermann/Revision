@@ -10,6 +10,9 @@ import {
   CLOSE_SNACKBAR
 } from './constants';
 
+
+// ACCOUNT ----------------------------------------------------------------
+
 const initialAccountState = {
   isSignedIn: false,
   isPending: false,
@@ -38,6 +41,8 @@ export const account = (state=initialAccountState, action={}) => {
   }
 }
 
+// ACTION FEEDBACK ----------------------------------------------------------
+
 const initialActionState = {
   open: false,
   message: '',
@@ -54,3 +59,28 @@ export const actionFeedback = (state=initialActionState, action={}) => {
       return state;
   }
 }
+
+
+
+// CARD GROUP ---------------------------------------------------------------
+
+
+
+
+// CARDS -------------------------------------------------------------------
+
+
+
+
+// ADDS --------------------------------------------------------------------
+
+
+
+
+// TAGS --------------------------------------------------------------------
+
+
+
+
+
+// GROUP TAGS --------------------------------------------------------------

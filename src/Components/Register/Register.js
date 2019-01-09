@@ -90,7 +90,7 @@ class Register extends Component {
           onChange={this.onPasswordChange}
         />
         <Button variant="contained" color="primary" type='submit'>
-          Register
+          {this.props.isPending ? 'Loading...' : 'Register'}
         </Button>
       </AccountForm>
     );
