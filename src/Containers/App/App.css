@@ -9,3 +9,7 @@
   background-attachment: fixed;
   overflow-x: hidden;
 }
+
+.routeHeader {
+  font-size: 2.5em; 
+}

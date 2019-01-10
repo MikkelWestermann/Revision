@@ -4,6 +4,8 @@ import AccountForm from '../AccountForm/AccountForm';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+import { Redirect } from 'react-router-dom';
+
 import { signin, openSnackbar } from '../../actions';
 
 const mapStateToProps = state => {
@@ -27,7 +29,8 @@ class Signin extends Component {
     super();
     this.state = {
       signInAccount: '',
-      signInPassword: ''
+      signInPassword: '',
+      redirect: ''
     }
   }
   onAccountChange = (event) => {
@@ -44,9 +47,18 @@ class Signin extends Component {
       this.props.handleOpenSnackBar('You have to fill all input fields', 'warning');
       return;
     }
+    if (this.props.fromHomepage) {
+      this.setState({
+        redirect: 'home'
+      })
+    }
     this.props.handleOnSubmit(this.state.signInAccount, this.state.signInPassword)
   }
   render() {
+    if (this.state.redirect === 'home' && this.props.isSignedIn) {
+      console.log('fufu')
+      return <Redirect to='/home' />
+    }
     return (
       <AccountForm
         name='Sign In'

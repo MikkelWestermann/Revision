@@ -52,7 +52,7 @@ class Homepage extends Component {
           {
             this.state.form === 'signin'
             ?
-            <Signin handleChangeForm={this.handleChangeForm}/>
+            <Signin handleChangeForm={this.handleChangeForm} fromHomepage={true}/>
             :
             <Register handleChangeForm={this.handleChangeForm}/>
           }

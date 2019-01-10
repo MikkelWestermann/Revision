@@ -86,12 +86,12 @@ export const signin = (accountName, password) => (dispatch) => {
   })
   .then(response => response.json())
   .then(data => {
-    if (data.username) {
+    if (data.data[0].username) {
       dispatch(openSnackbar('You have successfully signed in!', 'success'));
-      dispatch({ type: SIGN_IN_SUCCESS, payload: data })
+      dispatch({ type: SIGN_IN_SUCCESS, payload: data.data[0] })
     } else {
       dispatch(openSnackbar('Wrong Credentials', 'error'));
-      dispatch({ type: SIGN_IN_FAILED, payload: data })
+      dispatch({ type: SIGN_IN_FAILED, payload: data.data[0] })
     }
   })
   .catch(err => {
@@ -113,12 +113,12 @@ export const register = (username, email, password) => (dispatch) => {
   })
   .then(response => response.json())
   .then(data => {
-    if (data.username) {
+    if (data.data[0].username) {
       dispatch(openSnackbar('You have successfully created an account!', 'success'));
-      dispatch({ type: REGISTER_SUCCESS, payload: data })
+      dispatch({ type: REGISTER_SUCCESS, payload: data.data[0] })
     } else {
       dispatch(openSnackbar(data, 'error'));
-      dispatch({ type: REGISTER_FAILED, payload: data })
+      dispatch({ type: REGISTER_FAILED, payload: data.data[0] })
     }
   })
   .catch(err => {

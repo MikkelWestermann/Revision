@@ -14,14 +14,21 @@ import InfoIcon from '@material-ui/icons/Info';
 import amber from '@material-ui/core/colors/amber';
 import green from '@material-ui/core/colors/green';
 import NavBar from '../../Components/NavBar/NavBar';
-import Homepage from '../Homepage/Homepage';
-import Application from '../Application/Application';
 import Footer from '../../Components/Footer/Footer';
+import NotFound from '../../Components/NotFound/NotFound';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './App.css';
+
+// Routes
+import Homepage from '../Homepage/Homepage';
+import Account from '../Routes/Account/Account';
+import Home from '../Routes/Home/Home';
+import YourGroups from '../Routes/YourGroups/YourGroups';
+import Search from '../Routes/Search/Search';
 
 import { closeSnackbar } from '../../actions';
 
-const mapStateToProps = state => {
+const mapStateToProps = state => {''
   return {
     isSignedIn: state.account.isSignedIn,
     isPending: state.account.isPending,
@@ -121,34 +128,39 @@ const SnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
 class App extends Component {
   render() {
     return (
-      <div className='App'>
-        <NavBar />
-        <div>
-          <Snackbar
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            open={this.props.open}
-            autoHideDuration={5000}
-            onClose={this.props.handleCloseSnackbar}
-          >
-            <SnackbarContentWrapper
+      <Router>
+        <div className='App'>
+          <NavBar />
+          <div>
+            <Snackbar
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              open={this.props.open}
+              autoHideDuration={5000}
               onClose={this.props.handleCloseSnackbar}
-              variant={this.props.varient}
-              message={this.props.message}
-            />
-          </Snackbar>
-          {
-            this.props.isSignedIn
-            ?
-            <Application />
-            :
-            <Homepage />
-          }
+            >
+              <SnackbarContentWrapper
+                onClose={this.props.handleCloseSnackbar}
+                variant={this.props.varient}
+                message={this.props.message}
+              />
+            </Snackbar>
+              <Switch>
+                <Route exact path='/' component={ Homepage } />
+                <Route path='/home' component={ Home } />
+                <Route path='/account' component={ Account } />
+                <Route path='/yourgroups' component={ YourGroups } />
+                <Route path='/search' component={ Search } />
+                <Route path='/yourgroups/:id' component={ Home } />
+                <Route component={NotFound} />
+              </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </Router>
+
     );
   }
 }

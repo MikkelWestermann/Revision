@@ -24,7 +24,10 @@ import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { NavLink, withRouter } from 'react-router-dom'
 import logo from '../../GraphicalAssets/Revision_logo_medium.png';
+
+import './NavBar.css';
 
 import { signout, openSnackbar } from '../../actions';
 
@@ -123,6 +126,9 @@ const styles = theme => ({
   progress: {
     margin: theme.spacing.unit * 2,
   },
+  link: {
+    color: '#9D37FC'
+  }
 });
 
 class NavBar extends Component {
@@ -172,16 +178,17 @@ class NavBar extends Component {
               <Typography variant="h6" color="inherit" noWrap style={{marginLeft: `${this.props.isSignedIn ? 0 : '25px'}`}}>
                 Revision
               </Typography>
+
             </div>
-            {
-              this.props.isSignedIn
-              &&
-              <img alt='logo' src={logo} height='50px' width='50px' />
-            }
             {
               this.props.isPending
               &&
               <CircularProgress className={classes.progress} color="secondary" />
+            }
+            {
+              this.props.isSignedIn
+              &&
+              <img alt='logo' src={logo} height='50px' width='50px' />
             }
           </Toolbar>
         </AppBar>
@@ -202,31 +209,41 @@ class NavBar extends Component {
           <Divider />
           <div className={classes.contentBody}>
             <div>
-              <ListItem button>
-                <ListItemText primary={this.props.username} secondary={this.props.email} />
-                <ListItemIcon><KeyboardArrowRight /></ListItemIcon>
-              </ListItem>
+              <NavLink exact activeClassName="active" to="/account" className={classes.link}>
+                <ListItem button>
+                  <ListItemText primary={this.props.username} secondary={this.props.email} />
+                  <ListItemIcon><KeyboardArrowRight /></ListItemIcon>
+                </ListItem>
+              </NavLink>
               <Divider />
               <List>
-                <ListItem button>
-                  <ListItemIcon><Home /></ListItemIcon>
-                  <ListItemText primary='Home' />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon><ViewCarousel /></ListItemIcon>
-                  <ListItemText primary='Your Groups' />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon><Search /></ListItemIcon>
-                  <ListItemText primary='Search' />
-                </ListItem>
+                <NavLink exact activeClassName="active" to="/home" className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon><Home /></ListItemIcon>
+                    <ListItemText primary='Home' />
+                  </ListItem>
+                </NavLink>
+                <NavLink exact activeClassName="active" to="/yourgroups" className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon><ViewCarousel /></ListItemIcon>
+                    <ListItemText primary='Your Groups' />
+                  </ListItem>
+                </NavLink>
+                <NavLink exact activeClassName="active" to="/search" className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon><Search /></ListItemIcon>
+                    <ListItemText primary='Search' />
+                  </ListItem>
+                </NavLink>
               </List>
               <Divider />
             </div>
             <div>
-              <Button onClick={this.onSignOut} size="large" variant="contained" color="secondary" className={classes.button}>
-                Sign Out
-              </Button>
+              <NavLink exact activeClassName="active" to="/">
+                <Button onClick={this.onSignOut} size="large" variant="contained" color="secondary" className={classes.button} style={{display: ''}}>
+                  Sign Out
+                </Button>
+              </NavLink>
             </div>
           </div>
         </Drawer>
@@ -240,4 +257,4 @@ NavBar.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)((withStyles(styles, { withTheme: true })(NavBar)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)((withStyles(styles, { withTheme: true })(NavBar))));
