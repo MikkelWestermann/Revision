@@ -56,7 +56,6 @@ class Signin extends Component {
   }
   render() {
     if (this.state.redirect === 'home' && this.props.isSignedIn) {
-      console.log('fufu')
       return <Redirect to='/home' />
     }
     return (

@@ -209,7 +209,7 @@ class NavBar extends Component {
           <Divider />
           <div className={classes.contentBody}>
             <div>
-              <NavLink exact activeClassName="active" to="/account" className={classes.link}>
+              <NavLink exact activeClassName="active" to="/account" className={classes.link} onClick={this.handleDrawerClose}>
                 <ListItem button>
                   <ListItemText primary={this.props.username} secondary={this.props.email} />
                   <ListItemIcon><KeyboardArrowRight /></ListItemIcon>
@@ -217,19 +217,19 @@ class NavBar extends Component {
               </NavLink>
               <Divider />
               <List>
-                <NavLink exact activeClassName="active" to="/home" className={classes.link}>
+                <NavLink exact activeClassName="active" to="/home" className={classes.link} onClick={this.handleDrawerClose}>
                   <ListItem button>
                     <ListItemIcon><Home /></ListItemIcon>
                     <ListItemText primary='Home' />
                   </ListItem>
                 </NavLink>
-                <NavLink exact activeClassName="active" to="/yourgroups" className={classes.link}>
+                <NavLink exact activeClassName="active" to="/yourgroups/groups" className={classes.link} onClick={this.handleDrawerClose}>
                   <ListItem button>
                     <ListItemIcon><ViewCarousel /></ListItemIcon>
                     <ListItemText primary='Your Groups' />
                   </ListItem>
                 </NavLink>
-                <NavLink exact activeClassName="active" to="/search" className={classes.link}>
+                <NavLink exact activeClassName="active" to="/search" className={classes.link} onClick={this.handleDrawerClose}>
                   <ListItem button>
                     <ListItemIcon><Search /></ListItemIcon>
                     <ListItemText primary='Search' />

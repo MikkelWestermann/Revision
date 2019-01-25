@@ -1,0 +1,18 @@
+.groupDisplay {
+  display: flex;
+  justify-content: space-around;
+  min-height: 470px;
+  padding: 25px;
+  background-color: #9D37FC;
+  opacity: 0.8;
+  margin: 35px 0;
+  -webkit-box-shadow: 0px 0px 75px 0px rgba(25,29,50,0.5);
+  -moz-box-shadow: 0px 0px 75px 0px rgba(25,29,50,0.5);
+  box-shadow: 0px 0px 75px 0px rgba(25,29,50,0.5);
+}
+
+.groupDisplayList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

@@ -10,11 +10,11 @@ import * as serviceWorker from './serviceWorker';
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
-import { account, actionFeedback } from './reducers';
+import { account, actionFeedback, cardGroup, groupAdds, cards } from './reducers';
 
 const logger = createLogger();
 
-const rootReducer = combineReducers({ account, actionFeedback });
+const rootReducer = combineReducers({ account, actionFeedback, cardGroup, groupAdds, cards });
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 const theme = createMuiTheme({

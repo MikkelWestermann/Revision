@@ -1,0 +1,37 @@
+.listWrap {
+  background-color: #9D37FC;
+  opacity: 0.75;
+  min-height: 75vh;
+  color: #fafaff;
+  margin-top: 100px;
+  padding-bottom: 100px;
+}
+
+.activeList {
+  background-color: #9D37FC;
+}
+
+.listNav {
+  display: flex;
+  padding: 0;
+  background-color: #6600c8;
+  margin-bottom: 100px;
+}
+
+.listNavLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fafaff;
+  list-style: none;
+  width: 50vw;
+  height: 100px;
+  text-transform: uppercase;
+  font-size: 2.5em;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

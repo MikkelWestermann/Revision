@@ -25,6 +25,7 @@ import Account from '../Routes/Account/Account';
 import Home from '../Routes/Home/Home';
 import YourGroups from '../Routes/YourGroups/YourGroups';
 import Search from '../Routes/Search/Search';
+import EditGroup from '../Routes/EditGroup/EditGroup';
 
 import { closeSnackbar } from '../../actions';
 
@@ -96,7 +97,6 @@ function MySnackbarContent (props) {
         <span id="client-snackbar" className={classes.message}>
           <Icon className={classNames(classes.icon, classes.iconVariant)} />
           {message}
-          {console.log(props)}
         </span>
       }
       action={[
@@ -154,6 +154,7 @@ class App extends Component {
                 <Route path='/yourgroups' component={ YourGroups } />
                 <Route path='/search' component={ Search } />
                 <Route path='/yourgroups/:id' component={ Home } />
+                <Route path='/editgroup/:id' component={ EditGroup } />
                 <Route component={NotFound} />
               </Switch>
           </div>

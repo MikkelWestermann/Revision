@@ -134,19 +134,15 @@ export const signout = () => ({
 
 // CARD GROUP ---------------------------------------------------------------
 
-export const getCardGroups = username => (dispatch) => {
+export const getCardGroups = userId => (dispatch) => {
   dispatch({ type: GET_CARD_GROUPS_PENDING });
-  fetch(`${URL}/usercardgroups`, {
+  fetch(`${URL}/usercardgroups/${userId}`, {
     method: 'get',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      username
-    })
   })
   .then(response => response.json())
   .then(data => {
     if (data[0].title) {
-      dispatch(openSnackbar('Loaded your groups', 'success'));
       dispatch({ type: GET_CARD_GROUPS_SUCCESS, payload: data })
     } else {
       dispatch(openSnackbar(data, 'error'));
@@ -154,27 +150,29 @@ export const getCardGroups = username => (dispatch) => {
     }
   })
   .catch(err => {
-    dispatch(openSnackbar('Something went wrong, when fetching your groups', 'error'));
     dispatch({ type: GET_CARD_GROUPS_FAILED, payload: err })
   })
 }
 
 
-export const addCardGroup = (title, username) => (dispatch) => {
+export const addCardGroup = (title, userId, username) => (dispatch) => {
   dispatch({ type: ADD_CARD_GROUP_PENDING });
   fetch(`${URL}/addcardgroup`, {
     method: 'post',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       title,
+      userId,
       username
     })
   })
   .then(response => response.json())
   .then(data => {
-    if (data[0].title) {
+    console.log(data.data)
+    if (data.data[0].title) {
       dispatch(openSnackbar('Card group added', 'success'));
-      dispatch({ type: ADD_CARD_GROUP_SUCCESS, payload: data })
+      const returnData = Object.assign(data.data[0], { tags: [] })
+      dispatch({ type: ADD_CARD_GROUP_SUCCESS, payload: returnData })
     } else {
       dispatch(openSnackbar(data, 'error'));
       dispatch({ type: ADD_CARD_GROUP_FAILED, payload: data })
@@ -242,10 +240,9 @@ export const removeCardGroup = id => (dispatch) => {
 
 export const getCards = groupId => (dispatch) => {
   dispatch({ type: GET_CARDS_PENDING });
-  fetch(`${URL}/getcards`, {
+  fetch(`${URL}/getcards/${groupId}`, {
     method: 'get',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ groupId })
   })
   .then(response => response.json())
   .then(data => {
@@ -351,17 +348,15 @@ export const removeCard = id => (dispatch) => {
 
 // ADDS --------------------------------------------------------------------
 
-export const getAdds = username => (dispatch) => {
+export const getAdds = userId => (dispatch) => {
   dispatch({ type: GET_ADDS_PENDING });
-  fetch(`${URL}/getadds`, {
+  fetch(`${URL}/getadds/${userId}`, {
     method: 'get',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ username })
   })
   .then(response => response.json())
   .then(data => {
-    if (typeof data === 'object') {
-      dispatch(openSnackbar('Loaded adds', 'success'));
+    if (data[0].title) {
       dispatch({ type: GET_ADDS_SUCCESS, payload: data })
     } else {
       dispatch(openSnackbar(data, 'error'));
@@ -369,7 +364,6 @@ export const getAdds = username => (dispatch) => {
     }
   })
   .catch(err => {
-    dispatch(openSnackbar('Something went wrong, when fetching your groups', 'error'));
     dispatch({ type: GET_ADDS_FAILED, payload: err })
   })
 }
